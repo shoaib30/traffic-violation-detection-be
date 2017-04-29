@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.ge.predix.solsvc.service.HelloController;
+import com.techgeekme.service.HelloController;
 
 /**
  * 

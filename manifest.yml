@@ -1,10 +1,12 @@
 ---
 applications:
-  - name: predix-microservice-cf-spring
-    buildpack: java_buildpack
-    path: target/predix-microservice-cf-spring-1.1.12.jar
+  - name: traffic-violation-detection-be
+    buildpack: https://github.com/cloudfoundry/java-buildpack#v3.7
+    path: target/traffic-violation-detector-backend-1.1.12.jar
     memory: 512M
     timeout : 180
+services:
+   - traffic-violation-db
 env:
    SPRING_PROFILES_ACTIVE : cloud  
    JAVA_DOCS_URL : https://predixdev.github.io/predix-microservice-cf-spring

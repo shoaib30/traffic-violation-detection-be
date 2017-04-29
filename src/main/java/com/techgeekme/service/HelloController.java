@@ -1,4 +1,4 @@
-package com.ge.predix.solsvc.service;
+package com.techgeekme.service;
 
 import java.util.Date;
 

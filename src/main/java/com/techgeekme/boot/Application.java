@@ -1,4 +1,4 @@
-package com.ge.predix.solsvc.boot;
+package com.techgeekme.boot;
 
 import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
@@ -87,7 +87,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 })
 @PropertySource("classpath:application-default.properties")
-@ComponentScan(basePackages = "com.ge.predix.solsvc")
+@ComponentScan(basePackages = "com.techgeekme")
 @EnableSwagger2
 @Controller
 public class Application
@@ -164,7 +164,9 @@ public class Application
     private Predicate<String> paths()
     {
         return or(regex("/echo/*"), //$NON-NLS-1$
-                regex("/health")); //$NON-NLS-1$
+                regex("/health"),
+                regex("/data/setNode"),
+                regex("/data/getNodes")); //$NON-NLS-1$
         // regex("/info")); //$NON-NLS-1$
     }
 

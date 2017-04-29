@@ -8,7 +8,7 @@
  * under which the software has been supplied.
  */
 
-package com.ge.predix.solsvc.boot;
+package com.techgeekme.boot;
 
 import java.util.Map;
 

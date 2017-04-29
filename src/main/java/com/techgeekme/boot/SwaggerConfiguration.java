@@ -8,7 +8,7 @@
  * under which the software has been supplied.
  */
 
-package com.ge.predix.solsvc.boot;
+package com.techgeekme.boot;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
