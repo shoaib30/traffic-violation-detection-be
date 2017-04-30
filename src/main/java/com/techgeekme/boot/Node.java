@@ -25,6 +25,8 @@ public class Node {
 	
 	private String nodeName;
 	
+	private String uid;
+	
 	@OneToMany(mappedBy = "node", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private
 	List<Violation> violations;
@@ -63,5 +65,13 @@ public class Node {
 
 	public void setViolations(List<Violation> violations) {
 		this.violations = violations;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 }
