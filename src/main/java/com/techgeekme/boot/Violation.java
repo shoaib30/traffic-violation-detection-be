@@ -2,6 +2,7 @@ package com.techgeekme.boot;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,22 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Violation {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private
-	long id;
-	
+	private long id;
+
 	private String numberPlate;
+
 	
 	private Date timeOfViolation;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "node_id")
-    private Node node;
+	@JoinColumn(name = "node_id")
+	private Node node;
 
 	public long getId() {
 		return id;

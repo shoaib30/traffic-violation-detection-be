@@ -2,7 +2,9 @@ package com.techgeekme.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +83,24 @@ public class DataController {
 			vResponse.add(new ViolationResponse(v));
 		}
 		return vResponse;
+	}
+	@RequestMapping(value="/getGraphData", method = RequestMethod.GET)
+	public List<Long> getGraphData()	{
+		return violationRepository.countGrounpByViolationTime();
+	}
+	
+//	@RequestMapping(value="/getGraphData2", method = RequestMethod.GET)
+//	public Map<String, Long> getGraphData2()	{
+//		return violationRepository.countByViolationTime();
+//	}
+	
+	@RequestMapping(value="/getGraphData1", method = RequestMethod.GET)
+	public HashMap<String,Long> getGraphData1()	{
+		List<Object[]> objs = violationRepository.countByViolationTime();
+		HashMap<String, Long> resp = new HashMap<>();
+		for(Object[] obj: objs){
+			resp.put((String)obj[0], (Long)obj[1]);
+		}
+		return resp;
 	}
 }
