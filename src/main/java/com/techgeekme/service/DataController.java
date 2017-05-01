@@ -66,7 +66,7 @@ public class DataController {
 		JSONObject payload = bodyJson.getJSONObject("payload");
 		Violation violation = new Violation();
 		violation.setNumberPlate(payload.getString("numberPlate"));
-		violation.setTimeOfViolation(new Date(Long.parseLong(payload.getString("timeOfViolation")) * 1000));
+		violation.setTimeOfViolation(new Date((long) payload.getDouble("timeOfViolation")));
 		Node node = nodeRepository.findByUid(payload.getString("uid"));
 		node.getViolations().add(violation);
 		violation.setNode(node);
@@ -77,10 +77,16 @@ public class DataController {
 	
 	@RequestMapping(value = "/getViolations", method = RequestMethod.GET)
 	public List<ViolationResponse> getViolations(){
-		ArrayList<Violation> violations =  (ArrayList<Violation>) violationRepository.findAll();
+//		ArrayList<Violation> violations =  (ArrayList<Violation>) violationRepository.findAll();
 		ArrayList<ViolationResponse> vResponse = new ArrayList<>();
-		for(Violation v : violations){
-			vResponse.add(new ViolationResponse(v));
+//		for(Violation v : violations){
+//			vResponse.add(new ViolationResponse(v));
+//		}
+		ArrayList<Node> nodes = (ArrayList<Node>) nodeRepository.findAll();
+		for(Node n: nodes){
+			for(Violation v: n.getViolations()){
+				vResponse.add(new ViolationResponse(v, n.getNodeName()));
+			}
 		}
 		return vResponse;
 	}

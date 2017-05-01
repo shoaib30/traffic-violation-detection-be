@@ -26,7 +26,7 @@ public class NodeResponse {
 		this.setUid(n.getUid());
 		this.setViolations(new ArrayList<>());
 		for(Violation v: n.getViolations()){
-			this.getViolations().add(new ViolationResponse(v));
+			this.getViolations().add(new ViolationResponse(v, n.getNodeName()));
 		}
 	}
 	/**

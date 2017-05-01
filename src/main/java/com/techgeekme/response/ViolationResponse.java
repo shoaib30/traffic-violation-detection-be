@@ -9,6 +9,7 @@ public class ViolationResponse {
 
 	private String numberPlate;
 	private String timeOfViolation;
+	private String location;
 
 	ViolationResponse(){
 	
@@ -17,8 +18,14 @@ public class ViolationResponse {
 	public ViolationResponse(Violation v){
 		this.setNumberPlate(v.getNumberPlate());
 		this.setTimeOfViolation(v.getTimeOfViolation().toString());
+		this.setLocation(" ");
 	}
 	
+	public ViolationResponse(Violation v, String location){
+		this.setNumberPlate(v.getNumberPlate());
+		this.setTimeOfViolation(v.getTimeOfViolation().toString());
+		this.setLocation(location);
+	}
 	public String getNumberPlate() {
 		return numberPlate;
 	}
@@ -33,5 +40,13 @@ public class ViolationResponse {
 
 	public void setTimeOfViolation(String timeOfViolation) {
 		this.timeOfViolation = timeOfViolation;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
