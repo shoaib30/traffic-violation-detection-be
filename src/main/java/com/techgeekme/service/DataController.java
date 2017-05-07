@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,7 +67,7 @@ public class DataController {
 		JSONObject payload = bodyJson.getJSONObject("payload");
 		Violation violation = new Violation();
 		violation.setNumberPlate(payload.getString("numberPlate"));
-		violation.setTimeOfViolation(new Date((long) payload.getDouble("timeOfViolation")));
+		violation.setTimeOfViolation(new Date(((long) payload.getDouble("timeOfViolation"))*1000));
 		Node node = nodeRepository.findByUid(payload.getString("uid"));
 		node.getViolations().add(violation);
 		violation.setNode(node);
@@ -101,12 +102,16 @@ public class DataController {
 //	}
 	
 	@RequestMapping(value="/getGraphData1", method = RequestMethod.GET)
-	public HashMap<String,Long> getGraphData1()	{
+	public String getGraphData1()	{
+		JSONArray ja = new JSONArray();
 		List<Object[]> objs = violationRepository.countByViolationTime();
-		HashMap<String, Long> resp = new HashMap<>();
+		//HashMap<String, Long> resp = new HashMap<>();
 		for(Object[] obj: objs){
-			resp.put((String)obj[0], (Long)obj[1]);
+			JSONArray in = new JSONArray();
+			in.put((String)obj[0]);
+			in.put((Long)obj[1]);
+			ja.put(in);
 		}
-		return resp;
+		return ja.toString();
 	}
 }
